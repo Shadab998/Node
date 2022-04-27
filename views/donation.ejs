@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Show your love & support.</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/popup.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+
+    <style>
+        .content {
+            font-size: 18px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <!-- Page Wrapper -->
+    <div id="page-wrapper">
+
+        <!-- Header -->
+        <header id="header" class="alt">
+            <!-- TODO: link donate to paypal any amount -->
+            <h1 style="text-align: center;">Show your love & support.
+                <a style="color: #50BFE5;" href="https://www.paypal.me/">Donate</a>
+                <a style="color: rgb(255, 55, 5);" href="/logout">Logout</a>
+            </h1>
+
+        </header>
+ <h3 class="error"  style="color: rgb(255, 0, 0);font-size:40px;text-align:center" ><%= errors %></h3>
+        <!-- Banner -->
+        <section id="banner">
+            <div class="inner">
+                <div class="logo"><span class="icon fa-heart"></span></div>
+                <h2>Donate</h2>
+                <p>
+                    Want to show your love & support? Donate via
+                    <a href="https://www.google.com/search?q=bitcoin&oq=bitcoin&aqs=chrome..69i57j0l3j69i60j69i65j69i61j69i60.4580j1j7&sourceid=chrome&ie=UTF-8"><strong>Bitcoin</strong></a>.
+                </p><br />
+            </div>
+        </section>
+
+        <!-- Wrapper -->
+        <section id="wrapper">
+            <% if (prods.length > 0) { %>
+            <% var count=1; %>
+            <% var style='';%>
+            <% for(let i=0;i<prods.length;i++) { %>
+            <% if(count==1) { %>
+            <% style = "wrapper spotlight style1" %>
+            <% } %>
+            <% if(count==2) { %>
+            <% style = "wrapper alt spotlight style2" %>
+            <% } %>
+            <% if(count==3) { %>
+            <% style = "wrapper spotlight style3" %>
+            <% } %>
+            <% if(count==4) { %>
+            <% style = "wrapper alt spotlight style1" %>
+            <% } %>
+            <% if(count==5) { %>
+            <% style = "wrapper spotlight style3" %>
+            <% } %>
+            <% if(count==6) { %>
+            <% style = "wrapper alt spotlight style2" %>
+            <% } %>
+            <% if (count%6 == 0) { %>
+            <%count=1;%>
+            <% } else { %>
+            <%count=count+1;%>
+            <% } %>
+            <!-- One -->
+			
+			
+ 
+            <section id="one" class="<%=style%>">
+                <div style="text-align:center;">
+                    <span style="margin-right:5px;">collecting Money</span>
+                    <span style="margin-right:5px;">Money Collected</span>
+                    <span style="margin-right:145px;margin-left:15px;">Charity Gone To Help !</span>
+
+                </div>
+                <div style="text-align:center;">
+                    <% if( prods[i].status=='Open') { %>
+                    <div class="dot" style="background-color:green;"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <%} else { %>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot" style="background-color:green;"></div>
+                    <% } %>
+
+
+                </div>
+                <div class="inner">
+ 
+                    <a class="image"><img src="images/heart3.png" /></a>
+                    <div class="content">
+                        <h1 class="major"><%= prods[i].title %><span
+                                style="background-color:green;"><%= prods[i].status %></span></h1>
+                        <h2 class="major">Total Amount <%= prods[i].total_amount %> &#8377;</h2>
+                        <h4>Total Amount Collected <%=prods[i].added_amount %></h4>
+                        <h6>Closing date <%=prods[i].closingDate.toLocaleDateString('en-IN'); %></h6>
+                        <p><%=prods[i].people %> people already donated</p>
+                        <% if( prods[i].status=='Open') { %>
+                        <a href="#popup1" data-id="<%= prods[i]._id%>" class="openModal special">Donate</a>
+						<a href="/track-money" data-id="<%= prods[i]._id%>" class="openModal special">Track</a>
+                        <% }else{ %>
+                        <a href="#" class="special">Thank You !</a>
+                        <% } %>
+                    </div>
+                </div>
+            </section>
+            <% } %>
+            <% } %>
+        </section>
+
+        <!-- Footer -->
+        <section id="footer">
+            <div class="inner">
+                <h3>Why donate?</h3>
+                <p style="text-transform:none;">
+                    Maintaining my projects isn't effortless, or free. If you would like to kick in and help me
+                    cover
+                    those costs, that would be awesome. If you don't, no problem; just share your love and show your
+                    support.
+                </p>
+                <ul class="copyright">
+                    <li>&copy; <a href='https://pinkcoin.com'/>WithLove GroupNSM</a>. Some rights reserved.</li>
+                    <!--<li>Design: <a href="http://html5up.net">HTML5 UP</a>-->
+                    <li><a href="#">Credits</a></li>
+                    <li><a href="#">MIT License</a></li>
+                    <li><a href="sbshaikh998@gmail.com"><img style="max-width:2em;" src="#" alt=""></a>Reach us at sbshaikh998@gmail.com</li>
+                </ul>
+            </div>
+        </section>
+
+        <% if(userData=='1') { %>
+        <% if(prods[0].last_amount!==0) { %>
+        <div id="popup2" class="hidden" style="width:500px;background-color: #fff;text-align:center;">
+            <h1 style="color:#000;"><%=prods[0].title%></h1>
+            <h6 style="color:#000;">Someone has added amount of <%=prods[0].last_amount%> &#8377;.</h6>
+            <button class="button" id="selectPopUP"
+                style="background:#333; color:#fff; text-decoration:none; font-family:poppins; border-radius:3px;display:inline-block;"><span>Ok</span></button>
+        </div>
+        <% } %>
+        <% } %>
+
+        <div id="popup1" class="overlay">
+            <div class="popup"> <a class="close" href="#">&times;</a>
+                <div id="dialog" class="window">
+
+                    <div class="box">
+                        <div class="newletter-title">
+                            <h2>Donate your help &amp; feel happy</h2>
+                        </div>
+                        <div class="box-content newleter-content">
+                            <div id="frm_subscribe">
+                                <form class="product-form" action="/donate" method="POST">
+                                    <div>
+                                        <!-- <span class="required">*</span><span>Email</span>-->
+										<input type="text" value="" name="amount" id="amount" required style="background:#696969; color:#fff; text-decoration:none; font-family:poppins; border-radius: 3px; display:inline-block;">										
+										<input type="hidden" value="" name="donateId" id="donateId">
+                                        <div id="notification"></div>
+                                        <button class="button" type="submit"
+                                            style="background:#333; color:#fff; text-decoration:none; font-family:poppins; border-radius:3px;display:inline-block;"><span>Donate</span></button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /#frm_subscribe -->
+                        </div>
+                        <!-- /.box-content -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+
+    <script>
+        $(document).on("click", ".openModal", function () {
+            var donateId = $(this).data('id');
+            console.log(donateId, 'from jquery');
+            // $('#donateId').html(donateId);
+            $('input[name="donateId"]').val(donateId);
+        });
+
+
+        /* ----- JavaScript ----- */
+        window.onload = function () {
+            /* Cache the popup. */
+            var popup = document.getElementById("popup2");
+
+            /* Show the popup. */
+            popup.classList.remove("hidden");
+
+            /* Fade the popup in */
+            setTimeout(() => popup.classList.add("fade-in"));
+
+            /* Close the popup when a city is selected. */
+            document.getElementById("selectPopUP").onclick = function () {
+                //     /* Fade the popup out */
+                popup.classList.remove("fade-in");
+
+                //     /* Hide the popup. */
+                setTimeout(() => popup.classList.add("hidden"), 300);
+            };
+        };
+    </script>
+</body>
+
+</html>
